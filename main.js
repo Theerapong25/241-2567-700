@@ -154,10 +154,10 @@ for(let index =0; index < student.length; index++ ){
     console.log('grade',student[index].grade);
 }
 */
-
+/*
 let score1 = 50
 let score2 = 90
-let gardes =''
+let gardes ='' //ค่าว่าง
 // ประกาศfunction ชื่อcalcuiateGrade ที่มีparameter เป็น score
 function calcuiateGrade(score){
 if(score >=80){
@@ -172,7 +172,98 @@ if(score >=80){
     grades = 'F'
 }
 return gardes
+}//เรียกใช้ function 
+function calcuiateGrade(score){
+    if(score >=80){
+        grades = 'A'
+    } else if (score >= 70){
+        grades = 'B'
+    }else if (score >= 60){
+        grades = 'C'
+    }else if (score >= 50){
+        grades = 'D'
+    }else {
+        grades = 'F'
+    }
+    return gardes
 }
 let student1 = calcuiateGrade(score1)
 let student2 = calcuiateGrade(score2)
 console.log('garde',student1,student2)
+*/
+/*
+let score = [10,20,30,40,50];
+for(let index = 0; index < score.length; index++){
+    console.log(score[index]);
+}
+/*
+score[0]=score[0]*2;
+score[1]=score[1]*2;
+score[2]=score[2]*2;
+score[3]=score[3]*2;
+score[4]=score[4]*2;
+
+
+score = score.map((s)=>{
+    return s *2;
+})
+
+score.forEach((s)=>{
+console.log('new score',s)    
+})
+*/
+/*let score = [10,20,30,40];
+//let newScortes = []
+
+for(let index = 0; index , score.length; index++){
+    console.log('Score',score[index]);
+/*
+    if(score[index] >= 30){
+        newScortes.push(score[index]);
+    }
+}
+newScortes.forEach((ns) => {
+ console.log('New Score',ns);
+})
+
+}
+let newScortes = score.filter((s) => {
+   return s > 20;
+})
+newScortes.forEach((ns) => {
+    console.log('New Score',ns);
+})
+*/
+// ojects functions
+let students = [
+{
+    name: 'John',
+    score: 90,
+    grade: 'A'
+},
+{
+    name: 'Jane',
+    score: 75,
+    grade: 'B'
+},
+{
+    name: 'Jim',
+    score: 60,
+    grade: 'C'
+},
+]
+let student = students.find((s) => {
+    if(s.name == "Jane"){
+        return true
+    }
+})
+let doublescore = students.map((s) =>{
+    s.score = s.score*2
+})
+let heightscore_student = students.filter((s) =>{
+    if(s.score > 80){
+        return true
+    }
+})
+console.log('student: ',student)
+console.log('hight_student:',heightscore_student)
