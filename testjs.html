@@ -8,23 +8,25 @@
 <body>
     <div>Hello World</div>
     ชื่อ<input  
-          id="firstname"
-          class="input"
+          
           type="text"
           name="firstname"
           value="John">
-    นามสกุล<input  
+    <!-- นามสกุล<input  
           id="lastname"
           class="input"
           type="text"
           name="lastname"
-          value="Doe">
+          value="Doe"> -->
     <script>
-        let inputDOM = document.getElementsByClassName('input');
-        console.log(inputDOM);
-        for (let i = 0; i < inputDOM.length; i++) {
-            console.log(inputDOM[i].value);
-        }
+        let firstnameDOM = document.querySelector('input[name="firstname"]');
+        console.log(firstnameDOM.value);
+      
+        //let inputDOM = document.getElementsByClassName('input');
+        //console.log(inputDOM);
+        //for (let i = 0; i < inputDOM.length; i++) {
+            //console.log(inputDOM[i].value);
+        //}
     </script>    
 </body>
 </html>
