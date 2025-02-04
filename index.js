@@ -3,14 +3,14 @@ function submitData(){
     let lastNameDOM = document.querySelector('input[name=lastname]')
     let ageDOM = document.querySelector('input[name=age]')
     let genderDOM = document.querySelector('input[name=gender]:checked')
-    let interestsDOMs = document.querySelectorAll('input[name=interests]:checked')
+    let interestsDOMs = document.querySelectorAll('input[name=interest]:checked')
     let descriptionDOM = document.querySelector('textarea[name=description]')
     
-    let interests=''
-    for(let i=0;i<interestsDOMs.length;i++){
-        interests+=interestsDOMs[i].value
+    let interests='';
+    for(let i=0; i < interestsDOMs.length;i++){
+        interests +=interestsDOMs[i].value
         if(i != interestsDOMs.length-1){
-            interests+=','
+            interests+=',';
         }
     }
 
