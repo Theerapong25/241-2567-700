@@ -24,25 +24,25 @@ const initMySQL = async () => {
     });
 };
 
-// const validateData = (userData) => {
-//     let errors = [];
-//     if (!userData.firstName) {
-//         errors.push('กรุณากรอกชื่อ');
-//     }
-//     if (!userData.lastName) {
-//         errors.push('กรุณากรอกนามสกุล');
-//     }
-//     if (!userData.age) {
-//         errors.push('กรุณากรอกอายุ');
-//     }
-//     if (!userData.gender) {
-//         errors.push('กรุณาเลือกเพศ');
-//     }
-//     if (!userData.description) {
-//         errors.push('กรุณากรอกคำอธิบาย');
-//     }
-//     return errors;
-// }
+const validateData = (userData) => {
+    let errors = [];
+    if (!userData.firstName) {
+        errors.push('กรุณากรอกชื่อ');
+    }
+    if (!userData.lastName) {
+        errors.push('กรุณากรอกนามสกุล');
+    }
+    if (!userData.age) {
+        errors.push('กรุณากรอกอายุ');
+    }
+    if (!userData.gender) {
+        errors.push('กรุณาเลือกเพศ');
+    }
+    if (!userData.description) {
+        errors.push('กรุณากรอกคำอธิบาย');
+    }
+    return errors;
+}
 
 // GET /users - ดึง Users ทั้งหมด
 app.get('/users', async (req, res) => {
