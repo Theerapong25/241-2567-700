@@ -1,3 +1,51 @@
+const BASE_URL = 'http://localhost:8000'
+let mode = 'CREATE' // default mode
+let selectedID = ''
+
+window.onload = async () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const id = urlParams.get('id');
+    console.log('ID', id)
+    if (id) {
+        mode = 'EDIT'
+        selectedID = id
+        // ดึงข้อมูล user ที่ต้องการแก้ไข
+        try{
+            const response = await axios.get(`${BASE_URL}/users/${id}`)
+            const user = response.data
+
+
+        // เราจะนำข้อมูล user ที่ดึงมาใส่ใน input  ที่เรามี
+        let firstNameDOM = document.querySelector('input[name = firstname]');
+        let lastNameDOM = document.querySelector('input[name = lastname]');
+        let ageDOM = document.querySelector('input[name = age]');
+        let descriptionDOM = document.querySelector('textarea[name = description]');
+
+        firstNameDOM.value = user.firstname
+        lastNameDOM.value = user.lastname
+        ageDOM.value = user.age
+        descriptionDOM.value = user.description
+
+
+        let genderDOMs = document.querySelectorAll('input[name = gender]') ;
+        let interestDOMs = document.querySelectorAll('input[name = interest]');
+        //เช็คเพศที่เราเลือกไว้
+        for(let i = 0; i < genderDOMs.length; i++){
+            if(genderDOMs[i].value == user.gender){
+                genderDOMs[i].checked = true
+            }
+        } // เช็คกิจกรรมที่เราเลือกไว้
+        for (let i = 0; i < interestDOMs.length; i++) {
+            if(user.interests.includes(interestDOMs[i].value)){
+                interestDOMs[i].checked = true
+            }
+        }
+        }catch(error){
+            console.log('error',error)
+        }
+    }
+}
+
 const validateData = (userData) => {
     let errors = []
 
@@ -53,20 +101,28 @@ const submitData = async () => {
         }
         console.log("submitData", userData);
 
-        const errors = validateData(userData);
+        // const errors = validateData(userData);
 
-        if (errors.length > 0) {
-            //มี error
-            throw {
-                message: 'กรุณากรอกข้อมูลให้ครบถ้วน',
-                errors: errors
-            }
-        }
+        // if (errors.length > 0) {
+        //     //มี error
+        //     throw {
+        //         message: 'กรุณากรอกข้อมูลให้ครบถ้วน',
+        //         errors: errors
+        //     }
+        // }
+        let message = 'บันทึกข้อมูลสำเร็จ'
+        if (mode == 'CREATE') {
+            const response = await axios.post(`${BASE_URL}/users`, userData)
+            console.log("response", response.data);
+        } else{
+            const response = await axios.put(`${BASE_URL}/users/${selectedID}`, userData)
+            message = 'แก้ไขข้อมูลสำเร็จ'
+            console.log("response", response.data);
+        }    
 
-
-        const respone = await axios.post('http://localhost:8000/users', userData)
+        const respone = await axios.post(`${BASE_URL}/users`, userData)
         console.log("respone", respone.data);
-        messageDOM.innerText = "บันทึกข้อมูลสำเร็จ"
+        messageDOM.innerText = message
         messageDOM.className = "message success"
 
     } catch (error) {
