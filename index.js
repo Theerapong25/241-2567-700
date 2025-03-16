@@ -110,21 +110,15 @@ const submitData = async () => {
         //         errors: errors
         //     }
         // }
-        let message = 'บันทึกข้อมูลสำเร็จ'
-        if (mode == 'CREATE') {
-            const response = await axios.post(`${BASE_URL}/users`, userData)
-            console.log("response", response.data);
-        } else{
-            const response = await axios.put(`${BASE_URL}/users/${selectedID}`, userData)
-            message = 'แก้ไขข้อมูลสำเร็จ'
-            console.log("response", response.data);
-        }    
-
-        const respone = await axios.post(`${BASE_URL}/users`, userData)
-        console.log("respone", respone.data);
-        messageDOM.innerText = message
-        messageDOM.className = "message success"
-
+        let message = 'บันทึกข้อมูลสำเร็จ';
+        if (mode === 'CREATE') {
+            await axios.post(`${BASE_URL}/users`, userData);
+        } else {
+            await axios.put(`${BASE_URL}/users/${selectedID}`, userData);
+            message = 'แก้ไขข้อมูลสำเร็จ';
+        }
+        messageDOM.innerText = message;
+        messageDOM.className = "message success";
     } catch (error) {
         console.log('error message', error.message)
         console.log('error', error.erros)
@@ -144,6 +138,6 @@ const submitData = async () => {
 
 
         messageDOM.innerHTML = htmlData
-        messageDOM.className = 'message danger'
+        messageDOM.className = 'message danger' 
     }
 }
