@@ -121,7 +121,7 @@ const submitData = async () => {
         messageDOM.className = "message success";
     } catch (error) {
         console.log('error message', error.message)
-        console.log('error', error.erros)
+        console.log('error', error.errors)
         if (error.response) {
             console.log(error.response)
             error.message = error.response.data.message
